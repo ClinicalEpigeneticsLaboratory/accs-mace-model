@@ -70,12 +70,9 @@ def main():
         sys.exit(1)
 
     try:
-        l_norm = local_norm(mynorm, manifest)
-        g_norm = global_norm(mynorm)
-
         # Save output
         output_path = "normalized.parquet"
-        pd.concat((mynorm, l_norm, g_norm)).to_parquet(output_path)
+        mynorm.to_parquet(output_path)
         print(f"Normalization complete. Output saved to {output_path}")
 
     except Exception as e:
