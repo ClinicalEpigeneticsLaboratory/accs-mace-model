@@ -208,6 +208,7 @@ process anomalyDetection {
     detector = joblib.load("${detector}")
 
     anomaly_score  = abs(detector.score_samples(data)[0])
+    threshold = abs(detector["localoutlierfactor"].offset_)
 
     if anomaly_score >= threshold:
         status = "High-risk sample"
@@ -224,7 +225,7 @@ process anomalyDetection {
     with open('results.json', 'w') as f:
         result["Anomaly_status"] = status
         result["Anomaly_score"] = anomaly_score
-        result["Anomaly_thresholds"] = {"Medium-risk sample": 1.5}
+        result["Anomaly_thresholds"] = {"Medium-risk sample": 1.5, "High-risk sample": threshold}
 
         json.dump(result, f)
     """
