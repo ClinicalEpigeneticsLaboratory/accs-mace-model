@@ -1,0 +1,6 @@
+{
+    "Model": "logisticregression",
+    "Number of features": 7,
+    "Number of classes": 2,
+    "Classes": "False, True"
+}
